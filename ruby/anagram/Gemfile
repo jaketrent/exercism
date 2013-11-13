@@ -1,0 +1,6 @@
+source "http://rubygems.org"
+
+gem "gemrat"
+
+gem 'guard', '2.2.3'
+gem 'guard-minitest', '2.0.0'
