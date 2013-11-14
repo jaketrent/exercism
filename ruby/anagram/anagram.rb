@@ -9,21 +9,23 @@ class Comparison
   end
 
   def is_anagram?
-    same_length? and match? and has_same_letters?
+    same_length? and different? and has_same_letters?
   end
 
   def has_same_letters?
+    same_letters = true
     @letters1.each do |w|
       if @letters2.count(w) > 0
         _remove_letter @letters2, w
       else
-        @is_anagram = false
+        same_letters = false
       end
     end
+    same_letters
   end
 
-  def match?
-    @word1 == @word2
+  def different?
+    @word1 != @word2
   end
 
   def same_length?
