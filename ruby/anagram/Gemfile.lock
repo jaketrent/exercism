@@ -5,6 +5,13 @@ GEM
       timers (~> 1.1.0)
     coderay (1.1.0)
     colored (1.2)
+    columnize (0.3.6)
+    debugger (1.6.2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     ffi (1.9.3)
     formatador (0.2.4)
     gemrat (0.4.6)
@@ -40,6 +47,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  debugger (= 1.6.2)
   gemrat
   guard (= 2.2.3)
   guard-minitest (= 2.0.0)
