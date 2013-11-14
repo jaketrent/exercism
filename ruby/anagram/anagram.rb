@@ -1,4 +1,4 @@
-class Comparison
+class WordComparison
 
   def initialize(word1, word2)
     @word1 = word1.downcase
@@ -48,13 +48,8 @@ class Anagram
   def match(words)
     matches = []
     words.each do |w|
-      matches.push w if is_anagram? @word, w
+      matches.push w if WordComparison.new(@word, w).is_anagram?
     end
     matches
   end
-
-  def is_anagram?(word1, word2)
-    Comparison.new(word1, word2).is_anagram?
-  end
-
 end
