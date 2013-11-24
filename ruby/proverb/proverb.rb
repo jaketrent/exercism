@@ -11,39 +11,39 @@ class Proverb
   private
 
   def make_proverb(items, qualifier)
-    proverb = ""
+    make_small_actions(items) + make_large_consequence(qualifier, items[0])
+  end
 
+  def make_small_actions(items)
+    small_actions = ""
     items.each_with_index do |item, indx|
-      if indx > 0
-        proverb += "For want of a #{items[indx - 1]} the #{items[indx]} was lost.\n"
-      end
+      small_actions += make_small_action(items[indx - 1], items[indx]) if past_first_item? indx
     end
+    small_actions
+  end
 
-    proverb += "And all for the want of a #{format_qualifier(qualifier)}#{items[0]}."
+  def make_small_action(item_before, item)
+    "For want of a #{item_before} the #{item} was lost.\n"
+  end
 
-    proverb
+  def make_large_consequence(qualifier, original_item)
+    "And all for the want of a #{format_qualifier(qualifier)}#{original_item}."
+  end
+
+  def past_first_item?(indx)
+    indx > 0
   end
 
   def format_qualifier(qualifier)
-    unless qualifier.nil?
-      "#{qualifier} "
-    else
-      ""
-    end
+    qualifier.nil? ? "" : "#{qualifier} "
   end
 
   def extract_items(items)
-    if items.last.kind_of? Hash
-      items[0..items.count - 2]
-    else
-      items
-    end
+    items.last.kind_of?(Hash) ? items[0..items.count - 2] : items
   end
 
   def extract_qualifier(items)
-    if items.last.kind_of? Hash
-      items.last[:qualifier]
-    end
+    items.last.kind_of?(Hash) ? items.last[:qualifier] : nil
   end
 
 end
