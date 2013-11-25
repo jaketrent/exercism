@@ -9,38 +9,46 @@ class SpaceAge
   end
 
   def on_earth
-    (@seconds / seconds_in_earth_day).round(2)
+    seconds_on_planet :earth
   end
 
   def on_mercury
-    (@seconds / seconds_in_mercury_day).round(2)
+    seconds_on_planet :mercury
   end
 
   def on_venus
-    (@seconds / seconds_in_venus_day).round(2)
+    seconds_on_planet :venus
   end
 
   def on_mars
-    (@seconds / seconds_in_mars_day).round(2)
+    seconds_on_planet :mars
   end
 
   def on_jupiter
-    (@seconds / seconds_in_jupiter_day).round(2)
+    seconds_on_planet :jupiter
   end
 
   def on_saturn
-    (@seconds / seconds_in_saturn_day).round(2)
+    seconds_on_planet :saturn
   end
 
   def on_uranus
-    (@seconds / seconds_in_uranus_day).round(2)
+    seconds_on_planet :uranus
   end
 
   def on_neptune
-    (@seconds / seconds_in_neptune_day).round(2)
+    seconds_on_planet :neptune
   end
 
   private
+
+  def seconds_on_planet(planet)
+    format_seconds @seconds / send("seconds_in_#{planet}_day")
+  end
+
+  def format_seconds(seconds)
+    seconds.round(2)
+  end
 
   def seconds_in_earth_day
     (365.25 * 60 * 60 * 24).to_f
