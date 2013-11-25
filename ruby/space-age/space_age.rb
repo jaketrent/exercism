@@ -47,31 +47,59 @@ class SpaceAge
   end
 
   def seconds_in_mercury_day
-    0.2408467 * seconds_in_earth_day
+    mercury_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_venus_day
-    0.61519726 * seconds_in_earth_day
+    venus_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_mars_day
-    1.8808158 * seconds_in_earth_day
+    mars_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_jupiter_day
-    11.862615 * seconds_in_earth_day
+    jupiter_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_saturn_day
-    29.447498 * seconds_in_earth_day
+    saturn_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_uranus_day
-    84.016846 * seconds_in_earth_day
+    uranus_orbital_period_in_earth_years * seconds_in_earth_day
   end
 
   def seconds_in_neptune_day
-    164.79132 * seconds_in_earth_day
+    neptune_orbital_period_in_earth_years * seconds_in_earth_day
+  end
+
+  def mercury_orbital_period_in_earth_years
+    0.2408467
+  end
+
+  def venus_orbital_period_in_earth_years
+    0.61519726
+  end
+
+  def mars_orbital_period_in_earth_years
+    1.8808158
+  end
+
+  def jupiter_orbital_period_in_earth_years
+    11.862615
+  end
+
+  def saturn_orbital_period_in_earth_years
+    29.447498
+  end
+
+  def uranus_orbital_period_in_earth_years
+    84.016846
+  end
+
+  def neptune_orbital_period_in_earth_years
+    164.79132
   end
 
 end
