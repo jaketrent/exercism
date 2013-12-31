@@ -1,4 +1,12 @@
 
+var Response = (function () {
+
+  function Response() {}
+
+  return Response;
+
+})();
+
 var Bob = (function () {
 
   function Bob() {}
