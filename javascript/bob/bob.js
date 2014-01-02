@@ -1,15 +1,55 @@
 
-var Response = (function () {
+var __hasProp = {}.hasProperty;
+var __extends = function(child, parent) { 
+  for (var key in parent) { 
+    if (__hasProp.call(parent, key)) 
+      child[key] = parent[key]; 
+  } 
 
-  function Response() {}
+  function ctor() { 
+    this.constructor = child; 
+  } 
 
-  return Response;
+  ctor.prototype = parent.prototype; 
+  child.prototype = new ctor(); 
+  child.__super__ = parent.prototype; 
+
+  return child; 
+};
+
+var __extends = function (child, parent) {
+  for (var key in parent) {
+      if (__hasProp.call(parent, key)) {
+        child[key] = parent[key];
+      }
+  }
+
+  function ctor() {
+    this.constructor = child;
+  }
+
+  ctor.prototype = parent.prototype;
+  child.prototype = new ctor();
+  child.__super__ = parent.prototype;
+
+  return child;
+}
+
+var Person = (function () {
+
+  function Person() {}
+
+  return Person;
 
 })();
 
-var Bob = (function () {
+var Bob = (function (_super) {
 
-  function Bob() {}
+  __extends(Bob, _super);
+
+  function Bob() {
+    Bob.__super__.constructor.apply(this, arguments);
+  }
 
   Bob.prototype.hey = function (msg) {
     if (msg.trim() === '') {
@@ -25,6 +65,6 @@ var Bob = (function () {
 
   return Bob;
 
-})();
+})(Person);
 
 module.exports = Bob;
