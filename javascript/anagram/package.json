@@ -1,0 +1,29 @@
+{
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "matchdep": "~0.3.0",
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-jasmine-node": "~0.1.0"
+  },
+  "name": "anagram",
+  "description": "Write a program that, given a word and a list of possible anagrams, selects the correct sublist.",
+  "version": "0.0.0",
+  "main": "anagram.js",
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-jasmine-node": "~0.1.0",
+    "matchdep": "~0.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git", "url": "asdF"
+  }
+}
