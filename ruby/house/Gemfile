@@ -2,7 +2,6 @@ source "http://rubygems.org"
 
 gem "gemrat"
 
-gem 'guard', '2.2.3'
-gem 'guard-minitest', '2.0.0'
-gem 'debugger', '1.6.2'
-gem 'activesupport', '4.0.1'
+gem 'guard'
+gem 'guard-minitest'
+gem 'activesupport'

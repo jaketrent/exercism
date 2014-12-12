@@ -1,10 +1,23 @@
 class House
 
-  def initialize
-    @verse_initializer = "This is the"
+  def verse num
+    verses_starter + verse_parts.take(num).reverse.join
+  end
 
-    @verse_parts = [
-      " house that Jack built.\n",
+  def verses first, last
+    (first..last).map do |num|
+      verse(num) + "\n"
+    end.join
+  end
+
+  private
+
+  def verses_starter
+    "This is the"
+  end
+
+  def verse_parts
+    [ " house that Jack built.\n",
       " malt that lay in the",
       " rat that ate the",
       " cat that killed the",
@@ -17,28 +30,6 @@ class House
       " farmer sowing his corn that kept the",
       " horse and the hound and the horn that belonged to the"
     ]
-  end
-
-  def verse verse_num
-    gen_verse @verse_initializer, verse_num - 1
-  end
-
-  def verses verse_num_start, verse_num_end
-    verses = ""
-    (verse_num_start..verse_num_end).each do |verse_num|
-      verses += verse(verse_num) + "\n"
-    end
-    verses
-  end
-
-  private
-
-  def gen_verse verse_in_progress, verse_part_indx
-    if verse_part_indx < 0
-      verse_in_progress
-    else
-      gen_verse verse_in_progress + @verse_parts[verse_part_indx], verse_part_indx - 1
-    end
   end
 
 end
