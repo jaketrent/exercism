@@ -1,13 +1,13 @@
 class Hamming
 
-  def self.compute(strandOne, strandTwo)
+  def self.compute(string_1, string_2)
     distance = 0
-    nucleotidesOne = strandOne.split('')
-    nucleotidesTwo = strandTwo.split('')
+    chars_1 = string_1.split('')
+    chars_2 = string_2.split('')
 
-    if nucleotidesOne.count == nucleotidesTwo.count
-      nucleotidesOne.each_with_index do |nucleotide, indx|
-        distance += 1 if nucleotide != nucleotidesTwo[indx]
+    if chars_1.count == chars_2.count
+      chars_1.each_with_index do |nucleotide, indx|
+        distance += 1 if nucleotide != chars_2[indx]
       end
     end
 
