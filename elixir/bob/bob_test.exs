@@ -10,11 +10,11 @@ defmodule TeenagerTest do
   end
 
   test "shouting" do
-    # assert Teenager.hey("WATCH OUT!") == "Woah, chill out!"
+    assert Teenager.hey("WATCH OUT!") == "Woah, chill out!"
   end
 
   test "asking a question" do
-    # assert Teenager.hey("Does this cryogenic chamber make me look fat?") == "Sure."
+    assert Teenager.hey("Does this cryogenic chamber make me look fat?") == "Sure."
   end
 
   test "talking forcefully" do
