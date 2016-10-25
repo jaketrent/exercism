@@ -1,0 +1,8 @@
+.paket
+.vscode
+paket
+paket.dependencies
+paket.lock
+packages
+*.exe
+TestResult.xml
