@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{A1888B45-D25B-4120-B0D4-63FDE903494B}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bob.fs">
+    <Files>
+      <File FileName="Bob.fs" Line="8" Column="46" />
+      <File FileName="BobTest.fs" Line="33" Column="32" NotebookId="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="bob" expanded="True">
+            <Node name="bob" expanded="True">
+              <Node name="BobTest" expanded="True">
+                <Node name="Only numbers" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.bob PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
