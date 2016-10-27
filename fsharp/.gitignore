@@ -6,3 +6,5 @@ paket.lock
 packages
 *.exe
 TestResult.xml
+bin
+obj
