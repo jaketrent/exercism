@@ -23,8 +23,8 @@ tests =
             \() -> Expect.equal (Ok "U") (toRNA "A")
         , test "complement" <|
             \() -> Expect.equal (Ok "UGCACCAGAAUU") (toRNA "ACGTGGTCTTAA")
-          -- , test "correctly handles completely invalid input" <|
-          --     \() -> Expect.equal (Err 'X') (toRNA "XXX")
-          -- , test "correctly handles partially invalid input" <|
-          --     \() -> Expect.equal (Err 'U') (toRNA "UGAAXXXGACAUG")
+        , test "correctly handles completely invalid input" <|
+            \() -> Expect.equal (Err 'X') (toRNA "XXX")
+        , test "correctly handles partially invalid input" <|
+            \() -> Expect.equal (Err 'U') (toRNA "UGAAXXXGACAUG")
         ]

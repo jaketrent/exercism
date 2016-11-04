@@ -1,7 +1,7 @@
 module RNATranscription exposing (..)
 
-import List exposing (filter, map)
-import String exposing (join, split)
+import List exposing (head, filter, map)
+import String exposing (join, split, toList)
 
 
 complement : String -> Result String String
@@ -43,7 +43,22 @@ getVal result =
             "_"
 
 
-formatOutput : List (Result String String) -> Result String String
+getErr : Result String String -> Result Char String
+getErr result =
+    case result of
+        Err str ->
+            case head (toList str) of
+                Just char ->
+                    Err char
+
+                Nothing ->
+                    Err '_'
+
+        _ ->
+            Err '_'
+
+
+formatOutput : List (Result String String) -> Result Char String
 formatOutput complements =
     let
         errors =
@@ -54,10 +69,10 @@ formatOutput complements =
                 Ok (join "" (complements |> map getVal))
 
             err :: _ ->
-                err
+                getErr err
 
 
-toRNA : String -> Result String String
+toRNA : String -> Result Char String
 toRNA strand =
     (split "" strand)
         |> map complement
