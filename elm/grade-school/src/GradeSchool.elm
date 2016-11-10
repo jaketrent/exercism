@@ -8,43 +8,36 @@ type alias Student =
     ( Int, String )
 
 
-type alias Grade =
-    ( Int, List String )
+type alias Grades =
+    Dict Int (List String)
 
 
-empty : List Student
+type alias GradeList =
+    List ( Int, List String )
+
+
+empty : Grades
 empty =
-    []
+    Dict.empty
 
 
-addStudent : Int -> String -> List Student -> List Student
-addStudent grade name students =
-    students ++ ( grade, name ) :: []
+addStudent : Int -> String -> Grades -> Grades
+addStudent grade name grades =
+    Dict.update grade (appendName name) grades
 
 
-studentsInGrade : Int -> List Student -> List String
-studentsInGrade grade students =
-    students
-        |> List.filter (\s -> (fst s) == grade)
-        |> List.map (\s -> snd s)
+studentsInGrade : Int -> Grades -> List String
+studentsInGrade grade grades =
+    Dict.get grade grades
+        |> Maybe.withDefault []
         |> List.sort
 
 
-allStudents : List Student -> List Grade
-allStudents students =
-    students
-        |> List.foldl
-            (\( grade, name ) grades ->
-                let
-                    appendName entry =
-                        case entry of
-                            Just names ->
-                                Just (names ++ name :: [] |> List.sort)
+appendName : String -> Maybe (List String) -> Maybe (List String)
+appendName name names =
+    Just <| name :: Maybe.withDefault [] names
 
-                            Nothing ->
-                                Just (name :: [])
-                in
-                    Dict.update grade appendName grades
-            )
-            Dict.empty
-        |> Dict.toList
+
+allStudents : Grades -> GradeList
+allStudents grades =
+    grades |> Dict.toList
