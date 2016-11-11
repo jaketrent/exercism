@@ -17,21 +17,22 @@ mapComplement char =
         |> Maybe.withDefault char
 
 
-toResult : String -> String -> Result Char String
-toResult original complement =
-    let
-        firstMatch =
-            Regex.find (Regex.AtMost 1) (Regex.regex "[^CGTA]") original
-                |> List.head
-    in
-        case firstMatch of
-            Just { match } ->
-                Err (match |> String.toList |> List.head |> Maybe.withDefault '_')
+firstError : String -> Maybe Regex.Match
+firstError strand =
+    Regex.find (Regex.AtMost 1) (Regex.regex "[^CGTA]") strand
+        |> List.head
 
-            Nothing ->
-                Ok complement
+
+toChar : String -> Char
+toChar str =
+    str |> String.toList |> List.head |> Maybe.withDefault '_'
 
 
 toRNA : String -> Result Char String
 toRNA strand =
-    String.map mapComplement strand |> toResult strand
+    case firstError strand of
+        Just { match } ->
+            Err (toChar match)
+
+        Nothing ->
+            strand |> String.map mapComplement |> Ok
