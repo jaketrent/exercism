@@ -1,38 +1,33 @@
 module RNATranscription exposing (..)
 
-import Dict exposing (Dict)
 import List
-import Regex
 import String
 
 
-complements : Dict Char Char
-complements =
-    Dict.fromList [ ( 'G', 'C' ), ( 'C', 'G' ), ( 'T', 'A' ), ( 'A', 'U' ) ]
+transcribe : Char -> Result Char String -> Result Char String
+transcribe nucleotide result =
+    case ( result, nucleotide ) of
+        ( Ok rna, 'C' ) ->
+            Ok (rna ++ "G")
 
+        ( Ok rna, 'G' ) ->
+            Ok (rna ++ "C")
 
-mapComplement : Char -> Char
-mapComplement char =
-    Dict.get char complements
-        |> Maybe.withDefault char
+        ( Ok rna, 'T' ) ->
+            Ok (rna ++ "A")
 
+        ( Ok rna, 'A' ) ->
+            Ok (rna ++ "U")
 
-firstError : String -> Maybe Regex.Match
-firstError strand =
-    Regex.find (Regex.AtMost 1) (Regex.regex "[^CGTA]") strand
-        |> List.head
+        ( Err _, _ ) ->
+            result
 
-
-toChar : String -> Char
-toChar str =
-    str |> String.toList |> List.head |> Maybe.withDefault '_'
+        _ ->
+            Err nucleotide
 
 
 toRNA : String -> Result Char String
 toRNA strand =
-    case firstError strand of
-        Just { match } ->
-            Err (toChar match)
-
-        Nothing ->
-            strand |> String.map mapComplement |> Ok
+    strand
+        |> String.toList
+        |> List.foldl transcribe (Ok "")
