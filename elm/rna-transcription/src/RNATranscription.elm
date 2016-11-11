@@ -1,6 +1,5 @@
 module RNATranscription exposing (..)
 
-import List
 import String
 
 
@@ -28,6 +27,4 @@ transcribe nucleotide result =
 
 toRNA : String -> Result Char String
 toRNA strand =
-    strand
-        |> String.toList
-        |> List.foldl transcribe (Ok "")
+    strand |> String.foldl transcribe (Ok "")
