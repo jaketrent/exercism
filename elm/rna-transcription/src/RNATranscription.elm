@@ -1,79 +1,37 @@
 module RNATranscription exposing (..)
 
-import List exposing (head, filter, map)
-import String exposing (join, split, toList)
+import Dict exposing (Dict)
+import List
+import Regex
+import String
 
 
-complement : String -> Result String String
-complement nucleotide =
-    case nucleotide of
-        "C" ->
-            Ok "G"
-
-        "G" ->
-            Ok "C"
-
-        "T" ->
-            Ok "A"
-
-        "A" ->
-            Ok "U"
-
-        _ ->
-            Err nucleotide
+complements : Dict Char Char
+complements =
+    Dict.fromList [ ( 'G', 'C' ), ( 'C', 'G' ), ( 'T', 'A' ), ( 'A', 'U' ) ]
 
 
-isError : Result String String -> Bool
-isError result =
-    case result of
-        Err err ->
-            True
-
-        Ok val ->
-            False
+mapComplement : Char -> Char
+mapComplement char =
+    Dict.get char complements
+        |> Maybe.withDefault char
 
 
-getVal : Result String String -> String
-getVal result =
-    case result of
-        Ok val ->
-            val
-
-        _ ->
-            "_"
-
-
-getErr : Result String String -> Result Char String
-getErr result =
-    case result of
-        Err str ->
-            case head (toList str) of
-                Just char ->
-                    Err char
-
-                Nothing ->
-                    Err '_'
-
-        _ ->
-            Err '_'
-
-
-formatOutput : List (Result String String) -> Result Char String
-formatOutput complements =
+toResult : String -> String -> Result Char String
+toResult original complement =
     let
-        errors =
-            filter isError complements
+        firstMatch =
+            Regex.find (Regex.AtMost 1) (Regex.regex "[^CGTA]") original
+                |> List.head
     in
-        case errors of
-            [] ->
-                Ok (join "" (complements |> map getVal))
+        case firstMatch of
+            Just { match } ->
+                Err (match |> String.toList |> List.head |> Maybe.withDefault '_')
 
-            err :: _ ->
-                getErr err
+            Nothing ->
+                Ok complement
 
 
 toRNA : String -> Result Char String
 toRNA strand =
-    (split "" strand)
-        |> map complement
-        |> formatOutput
+    String.map mapComplement strand |> toResult strand
