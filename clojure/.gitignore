@@ -2,3 +2,5 @@ target/
 .lein-failures
 .cpcache
 .exercism
+.clj-kondo
+.lsp
